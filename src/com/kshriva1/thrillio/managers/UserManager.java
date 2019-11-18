@@ -2,6 +2,7 @@ package com.kshriva1.thrillio.managers;
 
 import java.util.List;
 
+import com.kshriva1.thrillio.constants.Gender;
 import com.kshriva1.thrillio.dao.UserDao;
 import com.kshriva1.thrillio.entities.User;
 
@@ -18,7 +19,7 @@ public class UserManager {
 		return instance;
 	}
 
-	public User createUser(long id, String email, String password, String firstName, String lastName, int gender,
+	public User createUser(long id, String email, String password, String firstName, String lastName, Gender gender,
 			String userType) {
 
 		User user = new User();

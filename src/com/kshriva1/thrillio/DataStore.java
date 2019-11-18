@@ -3,7 +3,9 @@ package com.kshriva1.thrillio;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.kshriva1.thrillio.constants.BookGenre;
 import com.kshriva1.thrillio.constants.Gender;
+import com.kshriva1.thrillio.constants.MovieGenre;
 import com.kshriva1.thrillio.entities.Bookmark;
 import com.kshriva1.thrillio.entities.User;
 import com.kshriva1.thrillio.entities.UserBookmark;
@@ -46,7 +48,7 @@ public class DataStore {
 		int rowNum = 0;
 		for(String text: data) {
 			String[] values = text.split("\t");
-			int gender = Gender.MALE;
+			Gender gender = Gender.MALE;
 			if(values[5].equals("f")) {
 				gender = Gender.FEMALE;
 			} else if(values[5].equals("t")) {
@@ -91,7 +93,7 @@ public class DataStore {
 			String[] values = text.split("\t");
 			String[] cast = values[3].split("\t");
 			String[] directors = values[4].split("\t");
-			Bookmark bookmark = BookmarkManager.getInstance().createMovie(Long.parseLong(values[0]), values[1],"", Integer.parseInt(values[2]), cast, directors, values[5], Double.parseDouble(values[6]));
+			Bookmark bookmark = BookmarkManager.getInstance().createMovie(Long.parseLong(values[0]), values[1],"", Integer.parseInt(values[2]), cast, directors, MovieGenre.valueOf(values[5]), Double.parseDouble(values[6]));
 			bookmarkList.add(bookmark);
 		}
 		
@@ -113,7 +115,7 @@ public class DataStore {
 		for(String text: data) {
 			String[] values = text.split("\t");
 			String[] authors = values[4].split("\t");
-			Bookmark bookmark = BookmarkManager.getInstance().createBook(Long.parseLong(values[0]), values[1], Integer.parseInt(values[2]), values[3], authors,values[5], Double.parseDouble(values[6]));
+			Bookmark bookmark = BookmarkManager.getInstance().createBook(Long.parseLong(values[0]), values[1], Integer.parseInt(values[2]), values[3], authors,BookGenre.valueOf(values[5]), Double.parseDouble(values[6]));
 			bookmarkList.add(bookmark);
 		}
 		bookmarks.add(bookmarkList);
